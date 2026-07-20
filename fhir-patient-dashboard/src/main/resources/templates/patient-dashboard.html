@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<title>FHIR Patient Dashboard</title>
+
+<link 
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+</head>
+
+
+<body class="container mt-5">
+
+
+<h3 class="mb-4">
+FHIR Clinical Intelligence Dashboard
+</h3>
+
+
+<div class="card mb-4">
+
+<div class="card-body">
+
+<h5>Patient Information</h5>
+
+<p>
+ID:
+<span th:text="${patient.id}"></span>
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>Active Conditions</h5>
+
+
+<ul>
+
+<li th:each="condition : ${patient.conditions}"
+    th:text="${condition}">
+</li>
+
+
+</ul>
+
+
+</div>
+
+</div>
+
+<div class="card mt-4">
+
+<div class="card-body">
+
+<h5>Current Medications</h5>
+
+
+<ul>
+
+<li th:each="medication : ${patient.medications}"
+    th:text="${medication}">
+</li>
+
+
+</ul>
+
+
+</div>
+
+<div class="card mt-4">
+
+<div class="card-body">
+
+<h5>Clinical Observations</h5>
+
+
+<ul>
+
+<li th:each="observation : ${patient.observations}"
+    th:text="${observation}">
+</li>
+
+
+</ul>
+
+
+</div>
+
+</div>
+
+<div class="card mt-4">
+
+<div class="card-body">
+
+<h5>
+🚨 Clinical Alerts
+</h5>
+
+
+<ul>
+
+<li th:each="alert : ${patient.alerts}"
+    th:text="${alert}">
+</li>
+
+</ul>
+
+
+<h4>
+Risk Level:
+<span th:text="${patient.riskLevel}">
+</span>
+</h4>
+
+
+<p th:text="${patient.clinicalSummary}">
+</p>
+
+
+</div>
+
+</div>
+
+<div class="card mt-4">
+    <div class="card-header bg-danger text-white">
+        Clinical Intelligence
+    </div>
+
+    <div class="card-body">
+
+        <h7>Risk Level</h7>
+
+        <span class="badge bg-danger"
+              th:text="${patient.riskLevel}">
+        </span>
+
+        <hr>
+
+        <h7>Clinical Alerts</h7>
+
+        <ul>
+            <li th:each="alert : ${patient.alerts}"
+                th:text="${alert}">
+            </li>
+        </ul>
+
+        <hr>
+
+        <h7>Clinical Summary</h7>
+
+        <p th:text="${patient.clinicalSummary}"></p>
+
+    </div>
+</div>
+</body>
+
+</html>

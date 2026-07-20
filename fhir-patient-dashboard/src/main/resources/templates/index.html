@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<title>FHIR Patient Dashboard</title>
+
+</head>
+
+<body>
+
+<h1>FHIR Patient 360 Dashboard</h1>
+
+<form action="/search">
+
+<input
+type="text"
+name="name"
+placeholder="Enter Patient Name">
+
+<button type="submit">
+
+Search
+
+</button>
+
+</form>
+
+<hr>
+
+<table border="1">
+
+<tr>
+
+<th>ID</th>
+
+<th>Name</th>
+
+<th>Gender</th>
+
+<th>Birth Date</th>
+
+</tr>
+
+<tr th:each="patient : ${patients}">
+
+<td th:text="${patient.id}"></td>
+
+<td>
+    <a th:href="@{/patient/{id}(id=${patient.id})}"
+       th:text="${patient.name}">
+    </a>
+</td>
+
+<td th:text="${patient.gender}"></td>
+
+<td th:text="${patient.birthDate}"></td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>
